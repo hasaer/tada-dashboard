@@ -21,14 +21,12 @@ public class MyPaymentViewHandler {
     public void whenDrivingCreated_then_CREATE_1 (@Payload DrivingCreated drivingCreated) {
         try {
             if (drivingCreated.isMe()) {
-                // view 객체 생성
                 MyPayment myPayment = new MyPayment();
-                // view 객체에 이벤트의 Value 를 set 함
                 myPayment.setCallId(drivingCreated.getCallId());
                 myPayment.setDrivingStatus(drivingCreated.getDrivingStatus());
                 myPayment.setStarting(drivingCreated.getStarting());
-                myPayment.setDestination(drivingCreated.getDrivingStatus());
-                // view 레파지 토리에 save
+                myPayment.setDestination(drivingCreated.getDestination());
+                myPayment.setCharge(drivingCreated.getCharge());
                 myPaymentRepository.save(myPayment);
             }
         }catch (Exception e){
@@ -41,15 +39,9 @@ public class MyPaymentViewHandler {
     public void whenDrivingCanceled_then_UPDATE_1(@Payload DrivingCanceled drivingCanceled) {
         try {
             if (drivingCanceled.isMe()) {
-                // view 객체 조회
-                Optional<MyPayment> myPaymentOptional = myPaymentRepository.findByCallId(drivingCanceled.getCallId());
-                if( myPaymentOptional.isPresent()) {
-                    MyPayment myPayment = myPaymentOptional.get();
-                    // view 객체에 이벤트의 eventDirectValue 를 set 함
-                    myPayment.setDrivingStatus(drivingCanceled.getDrivingStatus());
-                    // view 레파지 토리에 save
-                    myPaymentRepository.save(myPayment);
-                }
+                MyPayment myPayment = myPaymentRepository.findByCallId(drivingCanceled.getCallId());
+                myPayment.setDrivingStatus(drivingCanceled.getDrivingStatus());
+                myPaymentRepository.save(myPayment);
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -59,15 +51,9 @@ public class MyPaymentViewHandler {
     public void whenDrivingFinished_then_UPDATE_2(@Payload DrivingFinished drivingFinished) {
         try {
             if (drivingFinished.isMe()) {
-                // view 객체 조회
-                Optional<MyPayment> myPaymentOptional = myPaymentRepository.findByCallId(drivingFinished.getCallId());
-                if( myPaymentOptional.isPresent()) {
-                    MyPayment myPayment = myPaymentOptional.get();
-                    // view 객체에 이벤트의 eventDirectValue 를 set 함
-                    myPayment.setDrivingStatus(drivingFinished.getDrivingStatus());
-                    // view 레파지 토리에 save
-                    myPaymentRepository.save(myPayment);
-                }
+                MyPayment myPayment = myPaymentRepository.findByCallId(drivingFinished.getCallId());
+                myPayment.setDrivingStatus(drivingFinished.getDrivingStatus());
+                myPaymentRepository.save(myPayment);
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -77,15 +63,9 @@ public class MyPaymentViewHandler {
     public void whenPaymentDone_then_UPDATE_3(@Payload PaymentDone paymentDone) {
         try {
             if (paymentDone.isMe()) {
-                // view 객체 조회
-                Optional<MyPayment> myPaymentOptional = myPaymentRepository.findByCallId(paymentDone.getCallId());
-                if( myPaymentOptional.isPresent()) {
-                    MyPayment myPayment = myPaymentOptional.get();
-                    // view 객체에 이벤트의 eventDirectValue 를 set 함
-                    myPayment.setPaymentStatus(paymentDone.getPaymentStatus());
-                    // view 레파지 토리에 save
-                    myPaymentRepository.save(myPayment);
-                }
+                MyPayment myPayment = myPaymentRepository.findByCallId(paymentDone.getCallId());
+                myPayment.setPaymentStatus(paymentDone.getPaymentStatus());
+                myPaymentRepository.save(myPayment);
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -95,15 +75,9 @@ public class MyPaymentViewHandler {
     public void whenPaymentCanceled_then_UPDATE_4(@Payload PaymentCanceled paymentCanceled) {
         try {
             if (paymentCanceled.isMe()) {
-                // view 객체 조회
-                Optional<MyPayment> myPaymentOptional = myPaymentRepository.findByCallId(paymentCanceled.getCallId());
-                if( myPaymentOptional.isPresent()) {
-                    MyPayment myPayment = myPaymentOptional.get();
-                    // view 객체에 이벤트의 eventDirectValue 를 set 함
-                    myPayment.setPaymentStatus(paymentCanceled.getPaymentStatus());
-                    // view 레파지 토리에 save
-                    myPaymentRepository.save(myPayment);
-                }
+                MyPayment myPayment = myPaymentRepository.findByCallId(paymentCanceled.getCallId());
+                myPayment.setPaymentStatus(paymentCanceled.getPaymentStatus());
+                myPaymentRepository.save(myPayment);
             }
         }catch (Exception e){
             e.printStackTrace();

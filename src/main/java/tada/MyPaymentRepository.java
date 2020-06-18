@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface MyPaymentRepository extends CrudRepository<MyPayment, Long> {
 
+    MyPayment findByCallId(Long callId);
 
 }

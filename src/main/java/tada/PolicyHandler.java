@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PolicyHandler{
-    
+
+    @StreamListener(KafkaProcessor.INPUT)
+    public void onEvent(@Payload String message) { }
 
 }

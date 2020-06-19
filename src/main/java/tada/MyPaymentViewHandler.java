@@ -13,7 +13,6 @@ import java.util.Optional;
 @Service
 public class MyPaymentViewHandler {
 
-
     @Autowired
     private MyPaymentRepository myPaymentRepository;
 
